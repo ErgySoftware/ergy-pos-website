@@ -2,20 +2,49 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Displays from "../components/displays"
+import { useTheme, useMediaQuery, Button } from "@material-ui/core"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up("lg"))
+  return (
+    <Layout>
+      <div
+        style={{
+          padding: "10px   5vw",
+          background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
+          display: "flex",
+          flexFlow: "row",
+        }}
+      >
+        <SEO title="Inicio" />
+        <div
+          style={{ display: "flex", flexFlow: "column", textAlign: "center" }}
+        >
+          <h1 style={{ color: "#fff" }}>
+            El Punto de Venta Online que estabas buscando
+          </h1>
+          <p>
+            La solución para su negocio. Administre las ventas, el inventario,
+            las cajas y los clientes. Sin nada que usted tenga que instalar o
+            actualizar.
+          </p>
+          <Button variant="contained" color="primary" size="large">
+            Empezar a probar
+          </Button>
+        </div>
+        {matches && (
+          <div>
+            <Displays />
+          </div>
+        )}
+      </div>
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}></div>
+      <Link to="/page-2/">Go to page 2</Link>
+    </Layout>
+  )
+}
 
 export default IndexPage

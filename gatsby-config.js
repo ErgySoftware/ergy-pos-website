@@ -1,10 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Ergy POS`,
+    description: `Ergy POS - Point Of Sale es nuestro sistema de punto de venta diseñado para que pequeñas y medianas empresas puedan gestionar sus ventas en cualquier lugar y momento.`,
+    author: `@TheSleepyDev`,
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
