@@ -15,7 +15,7 @@ const Header = ({ siteTitle }) => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up("md"))
   const [isToogled, setIsToogled] = useState(false)
-  const isOnTop = useOnTop()
+  const [isOnTop, props] = useOnTop()
   const data = useStaticQuery(graphql`
     query {
       placeholderImage: file(relativePath: { eq: "logo.png" }) {
@@ -32,6 +32,7 @@ const Header = ({ siteTitle }) => {
     <header
       id="main-header"
       className={classNames({ [styles.border]: !isOnTop })}
+      {...props}
     >
       <div style={{ width: matches ? 180 : 90 }}>
         <Link

@@ -8,22 +8,30 @@ import { useTheme, useMediaQuery, Button } from "@material-ui/core"
 
 const IndexPage = () => {
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up("lg"))
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"))
   return (
     <Layout>
       <div
         style={{
           padding: "10px   5vw",
-          background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
+          background:
+            matchesMd || "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
           display: "flex",
           flexFlow: "row",
+          justifyContent: "space-around",
+          alignContent: "center",
         }}
       >
         <SEO title="Inicio" />
         <div
-          style={{ display: "flex", flexFlow: "column", textAlign: "center" }}
+          style={{
+            display: "flex",
+            flexFlow: "column",
+            textAlign: "center",
+            width: matchesMd && "35%",
+          }}
         >
-          <h1 style={{ color: "#fff" }}>
+          <h1 style={{ color: matchesMd || "#fff" }}>
             El Punto de Venta Online que estabas buscando
           </h1>
           <p>
@@ -35,8 +43,8 @@ const IndexPage = () => {
             Empezar a probar
           </Button>
         </div>
-        {matches && (
-          <div>
+        {matchesMd && (
+          <div style={{ width: "50%" }}>
             <Displays />
           </div>
         )}
