@@ -18,7 +18,8 @@ const IndexPage = () => {
             matchesMd || "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
           display: "flex",
           flexFlow: "row",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
+          alignItems: "center",
           alignContent: "center",
         }}
       >
@@ -28,7 +29,7 @@ const IndexPage = () => {
             display: "flex",
             flexFlow: "column",
             textAlign: "center",
-            width: matchesMd && "35%",
+            width: matchesMd && "45%",
           }}
         >
           <h1 style={{ color: matchesMd || "#fff" }}>
