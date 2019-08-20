@@ -50,8 +50,6 @@ const IndexPage = () => {
           </div>
         )}
       </div>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}></div>
-      <Link to="/page-2/">Go to page 2</Link>
     </Layout>
   )
 }

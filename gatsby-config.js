@@ -3,6 +3,9 @@ module.exports = {
     title: `Ergy POS`,
     description: `Ergy POS - Point Of Sale es nuestro sistema de punto de venta diseñado para que pequeñas y medianas empresas puedan gestionar sus ventas en cualquier lugar y momento.`,
     author: `@TheSleepyDev`,
+    contactMail: `ventas@soccoing.com.co`,
+    contactPhone: 573187718333,
+    contactMessage: "Quiero conocer más sobre Ergy POS",
   },
   plugins: [
     `gatsby-plugin-material-ui`,

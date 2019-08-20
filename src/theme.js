@@ -4,6 +4,10 @@ import { createMuiTheme } from "@material-ui/core/styles"
 // A custom theme for this app
 const theme = createMuiTheme({
   palette: {
+    common: {
+      black: "#333",
+      white: "#fff",
+    },
     secondary: {
       main: "#19857b",
     },
@@ -12,6 +16,12 @@ const theme = createMuiTheme({
     },
     background: {
       default: "#fff",
+    },
+    text: {
+      primary: "rgba(51, 51, 51, 0.87)",
+      secondary: "rgba(51, 51, 51, 0.54)",
+      disabled: "rgba(51, 51, 51, 0.38)",
+      hint: "rgba(51, 51, 51, 0.38)",
     },
   },
   breakpoints: {
