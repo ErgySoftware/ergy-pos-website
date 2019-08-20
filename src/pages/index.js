@@ -1,40 +1,50 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Displays from "../components/displays"
-import { useTheme, useMediaQuery, Button } from "@material-ui/core"
+import { makeStyles, Button } from "@material-ui/core"
+
+const useStyles = makeStyles(theme => ({
+  main: {
+    padding: "10px   5vw",
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignContent: "center",
+    background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
+    [theme.breakpoints.up("md")]: {
+      background: "none",
+    },
+  },
+  actionContainer: {
+    display: "flex",
+    flexFlow: "column",
+    textAlign: "center",
+    color: theme.palette.common.white,
+    [theme.breakpoints.up("md")]: {
+      width: "45%",
+      color: theme.palette.common.black,
+    },
+  },
+  imageContainer: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+      width: "50%",
+    },
+  },
+}))
 
 const IndexPage = () => {
-  const theme = useTheme()
-  const matchesMd = useMediaQuery(theme.breakpoints.up("md"))
+  const classes = useStyles()
   return (
     <Layout>
-      <div
-        style={{
-          padding: "10px   5vw",
-          background:
-            matchesMd || "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
-          display: "flex",
-          flexFlow: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          alignContent: "center",
-        }}
-      >
+      <section className={classes.main}>
         <SEO title="Inicio" />
-        <div
-          style={{
-            display: "flex",
-            flexFlow: "column",
-            textAlign: "center",
-            width: matchesMd && "45%",
-          }}
-        >
-          <h1 style={{ color: matchesMd || "#fff" }}>
-            El Punto de Venta Online que estabas buscando
-          </h1>
+        <div className={classes.actionContainer}>
+          <h1>El Punto de Venta Online que estabas buscando</h1>
           <p>
             La solución para su negocio. Administre las ventas, el inventario,
             las cajas y los clientes. Sin nada que usted tenga que instalar o
@@ -44,12 +54,10 @@ const IndexPage = () => {
             Empezar a probar
           </Button>
         </div>
-        {matchesMd && (
-          <div style={{ width: "50%" }}>
-            <Displays />
-          </div>
-        )}
-      </div>
+        <div className={classes.imageContainer}>
+          <Displays />
+        </div>
+      </section>
     </Layout>
   )
 }
