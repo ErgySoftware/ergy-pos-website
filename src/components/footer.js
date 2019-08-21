@@ -93,6 +93,7 @@ export default function Footer({ phone, mail, message }) {
                     underline="hover"
                     color="inherit"
                     target="_blank"
+                    rel="noreferrer noopener"
                     href={`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURI(
                       message
                     )}`}
@@ -106,6 +107,7 @@ export default function Footer({ phone, mail, message }) {
                     underline="hover"
                     color="inherit"
                     target="_blank"
+                    rel="noreferrer noopener"
                     href={"mailto:" + mail}
                   >
                     <FontAwesomeIcon icon="envelope"></FontAwesomeIcon> {mail}
@@ -118,6 +120,7 @@ export default function Footer({ phone, mail, message }) {
               <Link
                 color="inherit"
                 target="_blank"
+                rel="noreferrer noopener"
                 href="https://www.facebook.com/SoftwareErgy/"
               >
                 <Typography variant="srOnly">Facebook Ergy</Typography>
@@ -127,6 +130,7 @@ export default function Footer({ phone, mail, message }) {
                 style={{ marginLeft: 10 }}
                 color="inherit"
                 target="_blank"
+                rel="noreferrer noopener"
                 href="https://www.instagram.com/ergysoftware/"
               >
                 <Typography variant="srOnly">Instagram Ergy</Typography>
