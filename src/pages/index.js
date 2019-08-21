@@ -52,22 +52,22 @@ const IndexPage = () => {
     query {
       speedImage: file(relativePath: { eq: "speed.png" }) {
         childImageSharp {
-          fluid(maxWidth: 400, maxHeight: 400) {
-            ...GatsbyImageSharpFluid_noBase64
+          fixed(height: 200) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
       easyImage: file(relativePath: { eq: "easy.png" }) {
         childImageSharp {
-          fluid(maxWidth: 460, maxHeight: 400) {
-            ...GatsbyImageSharpFluid_noBase64
+          fixed(height: 200) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
       portableImage: file(relativePath: { eq: "tablet.png" }) {
         childImageSharp {
-          fluid(maxWidth: 400, maxHeight: 400) {
-            ...GatsbyImageSharpFluid_noBase64
+          fixed(height: 200) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -85,7 +85,7 @@ const IndexPage = () => {
             actualizar.
           </p>
           <Button variant="contained" color="primary" size="large">
-            Empezar a probar
+            Empezar a probar gratis
           </Button>
         </div>
         <div className={classes.imageContainer}>
@@ -95,62 +95,50 @@ const IndexPage = () => {
       <section id="detalles">
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <div style={{ width: "30%", margin: "0 auto" }}>
-                  <Img
-                    fluid={data.speedImage.childImageSharp.fluid}
-                    alt="Rapidez"
-                  />
-                </div>
-                <Typography variant="h3" align="center">
-                  Rapidez
-                </Typography>
-                <Typography variant="body1" align="center">
-                  Maximice la atención al cliente a la hora de vender con
-                  nuestra interfaz rápida e intuitiva.
-                </Typography>
-              </CardContent>
-            </Card>
+            <div style={{ width: "30%", margin: "0 auto" }}>
+              <Img
+                fixed={data.speedImage.childImageSharp.fixed}
+                alt="Rapidez"
+              />
+            </div>
+            <Typography variant="h3" align="center">
+              Rapidez
+            </Typography>
+            <Typography variant="body1" align="center">
+              Maximice la atención al cliente a la hora de vender con nuestra
+              interfaz rápida e intuitiva.
+            </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <div style={{ width: "30%", margin: "0 auto" }}>
-                  <Img
-                    fluid={data.easyImage.childImageSharp.fluid}
-                    alt="Sencillez"
-                  />
-                </div>
-                <Typography variant="h3" align="center">
-                  Sencillez
-                </Typography>
-                <Typography variant="body1" align="center">
-                  Obtenga una experiencia intuitiva en nuestra plataforma
-                  diseñada para ser usada sin complicaciones ni dificultades
-                </Typography>
-              </CardContent>
-            </Card>
+            <div style={{ width: "30%", margin: "0 auto" }}>
+              <Img
+                fixed={data.easyImage.childImageSharp.fixed}
+                alt="Sencillez"
+              />
+            </div>
+            <Typography variant="h3" align="center">
+              Sencillez
+            </Typography>
+            <Typography variant="body1" align="center">
+              Obtenga una experiencia intuitiva en nuestra plataforma diseñada
+              para ser usada sin complicaciones ni dificultades
+            </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <div style={{ width: "30%", margin: "0 auto" }}>
-                  <Img
-                    fluid={data.portableImage.childImageSharp.fluid}
-                    alt="Rapidez"
-                  />
-                </div>
-                <Typography variant="h3" align="center">
-                  Portabilidad
-                </Typography>
-                <Typography variant="body1" align="center">
-                  Lleve su negocio en el bolsillo a cualquier lugar y en
-                  cualquier momento. No vuelva a perder una oportunidad de
-                  negocio por no tener la información a la mano.
-                </Typography>
-              </CardContent>
-            </Card>
+            <div style={{ width: "30%", margin: "0 auto" }}>
+              <Img
+                fixed={data.portableImage.childImageSharp.fixed}
+                alt="Rapidez"
+              />
+            </div>
+            <Typography variant="h3" align="center">
+              Portabilidad
+            </Typography>
+            <Typography variant="body1" align="center">
+              Lleve su negocio en el bolsillo a cualquier lugar y en cualquier
+              momento. No vuelva a perder una oportunidad de negocio por no
+              tener la información a la mano.
+            </Typography>
           </Grid>
         </Grid>
       </section>
