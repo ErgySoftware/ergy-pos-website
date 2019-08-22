@@ -1,6 +1,6 @@
 .container {
   max-width: 900px;
-  margin: 0 auto;
+  float: right;
   position: relative;
 }
 
@@ -21,20 +21,20 @@
 }
 
 .display.pc {
-  width: 74%;
-  height: 52%;
-  margin-left: 19.5%;
-  margin-top: 2%;
+  width: 77%;
+  height: 50%;
+  margin-left: 20%;
+  margin-top: 3.8%;
 }
 
 .display.ipad {
-  width: 27.8%;
-  margin-left: 6.5%;
-  margin-top: 42%;
+  width: 28.8%;
+  margin-left: 6.7%;
+  margin-top: 43.6%;
 }
 
 .display.iphone {
-  width: 11.8%;
-  margin-left: 33.1%;
-  margin-top: 66.9%;
+  width: 12%;
+  margin-left: 34.3%;
+  margin-top: 69.5%;
 }

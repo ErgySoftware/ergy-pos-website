@@ -1,78 +1,63 @@
 import React from "react"
 
-import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Displays from "../components/displays"
-import {
-  makeStyles,
-  Button,
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-} from "@material-ui/core"
-import { useStaticQuery } from "gatsby"
+import Description from "../components/description"
+import { makeStyles, Button } from "@material-ui/core"
+import theme from "../theme"
 
-const useStyles = makeStyles(theme => ({
-  main: {
-    padding: "10px   5vw",
-    display: "flex",
-    flexFlow: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    alignContent: "center",
-    background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
-    [theme.breakpoints.up("md")]: {
-      background: "none",
+const useStyles = makeStyles(
+  theme => ({
+    main: {
+      padding: "10px   5vw",
+      display: "flex",
+      flexFlow: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      alignContent: "center",
+      background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
+      height: "calc(100vh - 50px)",
+      [theme.breakpoints.up("lg")]: {
+        background: "none",
+        height: "calc(100vh - 115px)",
+      },
     },
-  },
-  actionContainer: {
-    display: "flex",
-    flexFlow: "column",
-    textAlign: "center",
-    color: theme.palette.common.white,
-    [theme.breakpoints.up("md")]: {
-      width: "45%",
-      color: theme.palette.common.black,
+    description: {
+      maxWidth: 900,
+      margin: "10px auto",
+      [theme.breakpoints.up("xl")]: {
+        maxWidth: 1200,
+      },
+      [theme.breakpoints.up("xxl")]: {
+        maxWidth: 1800,
+      },
     },
-  },
-  imageContainer: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "block",
-      width: "50%",
+    actionContainer: {
+      display: "flex",
+      flexFlow: "column",
+      textAlign: "center",
+      color: theme.palette.common.white,
+      [theme.breakpoints.up("lg")]: {
+        width: "45%",
+        color: theme.palette.common.black,
+      },
     },
-  },
-}))
+    imageContainer: {
+      display: "none",
+      [theme.breakpoints.up("lg")]: {
+        display: "block",
+        width: "50%",
+        maxHeight: "100%",
+        maxWidth: "100vh",
+      },
+    },
+  }),
+  { defaultTheme: theme }
+)
 
 const IndexPage = () => {
   const classes = useStyles()
-  const data = useStaticQuery(graphql`
-    query {
-      speedImage: file(relativePath: { eq: "speed.png" }) {
-        childImageSharp {
-          fixed(height: 200) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      easyImage: file(relativePath: { eq: "easy.png" }) {
-        childImageSharp {
-          fixed(height: 200) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      portableImage: file(relativePath: { eq: "tablet.png" }) {
-        childImageSharp {
-          fixed(height: 200) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)
   return (
     <Layout>
       <SEO title="Inicio" />
@@ -92,55 +77,8 @@ const IndexPage = () => {
           <Displays />
         </div>
       </section>
-      <section id="detalles">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
-            <div style={{ width: "30%", margin: "0 auto" }}>
-              <Img
-                fixed={data.speedImage.childImageSharp.fixed}
-                alt="Rapidez"
-              />
-            </div>
-            <Typography variant="h3" align="center">
-              Rapidez
-            </Typography>
-            <Typography variant="body1" align="center">
-              Maximice la atención al cliente a la hora de vender con nuestra
-              interfaz rápida e intuitiva.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ width: "30%", margin: "0 auto" }}>
-              <Img
-                fixed={data.easyImage.childImageSharp.fixed}
-                alt="Sencillez"
-              />
-            </div>
-            <Typography variant="h3" align="center">
-              Sencillez
-            </Typography>
-            <Typography variant="body1" align="center">
-              Obtenga una experiencia intuitiva en nuestra plataforma diseñada
-              para ser usada sin complicaciones ni dificultades
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ width: "30%", margin: "0 auto" }}>
-              <Img
-                fixed={data.portableImage.childImageSharp.fixed}
-                alt="Rapidez"
-              />
-            </div>
-            <Typography variant="h3" align="center">
-              Portabilidad
-            </Typography>
-            <Typography variant="body1" align="center">
-              Lleve su negocio en el bolsillo a cualquier lugar y en cualquier
-              momento. No vuelva a perder una oportunidad de negocio por no
-              tener la información a la mano.
-            </Typography>
-          </Grid>
-        </Grid>
+      <section id="detalles" className={classes.description}>
+        <Description />
       </section>
     </Layout>
   )
