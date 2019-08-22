@@ -64,6 +64,7 @@
   visibility: hidden;
   display: flex;
   flex-direction: column;
+  background-color: #fff
 }
 
 .main-menu.open {
@@ -123,6 +124,7 @@
    Horizontal menu
   */
 @media (min-width: 768px) {
+
   .menu-toggle,
   .main-menu .menu-close,
   .main-menu .menu-header {
@@ -131,6 +133,7 @@
 
   /* Undo positioning of off-canvas menu */
   .main-menu {
+    background: none;
     position: relative;
     left: auto;
     top: auto;

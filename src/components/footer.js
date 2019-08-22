@@ -66,7 +66,7 @@ export default function Footer({ phone, mail, message }) {
               </MyLink>
             </li>
             <li>
-              <MyLink to="/" underline="hover" color="inherit">
+              <MyLink to="/caracteristicas" underline="hover" color="inherit">
                 Características
               </MyLink>
             </li>

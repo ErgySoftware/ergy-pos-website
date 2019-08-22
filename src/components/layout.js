@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
         <main
           style={{
             margin: `0 auto`,
-            paddingTop: matches ? 115 : 50,
+            paddingTop: matches ? 115 : 60,
           }}
         >
           {children}

@@ -8,7 +8,14 @@ module.exports = {
     contactMessage: "Quiero conocer más sobre Ergy POS",
   },
   plugins: [
-    `gatsby-plugin-material-ui`,
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true,
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

@@ -100,7 +100,7 @@ const Header = ({ siteTitle }) => {
             </MyLink>
           </li>
           <li>
-            <MyLink to="/" underline="none">
+            <MyLink to="/caracteristicas" underline="none">
               Características
             </MyLink>
           </li>

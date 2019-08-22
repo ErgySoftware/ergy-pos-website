@@ -590,13 +590,13 @@ ul li {
   padding-left: 0;
 }
 
-li > ol {
+li>ol {
   margin-left: 1.45rem;
   margin-bottom: calc(1.45rem / 2);
   margin-top: calc(1.45rem / 2);
 }
 
-li > ul {
+li>ul {
   margin-left: 1.45rem;
   margin-bottom: calc(1.45rem / 2);
   margin-top: calc(1.45rem / 2);
@@ -614,7 +614,7 @@ p *:last-child {
   margin-bottom: 0;
 }
 
-li > p {
+li>p {
   margin-bottom: calc(1.45rem / 2);
 }
 
@@ -714,8 +714,10 @@ pre tt:after {
   }
 }
 
-@media only screen and (min-width: 1200px) {
-  html {
-    font-size: 24px;
-  }
+
+
+#gatsby-focus-wrapper {
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
 }

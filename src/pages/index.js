@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       alignItems: "center",
       alignContent: "center",
       background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
-      height: "calc(100vh - 50px)",
+      height: "calc(100vh - 60px)",
       [theme.breakpoints.up("lg")]: {
         background: "none",
         height: "calc(100vh - 115px)",
@@ -70,7 +70,7 @@ const IndexPage = () => {
             actualizar.
           </p>
           <Button variant="contained" color="primary" size="large">
-            Empezar a probar gratis
+            probar gratis
           </Button>
         </div>
         <div className={classes.imageContainer}>
