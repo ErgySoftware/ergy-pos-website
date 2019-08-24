@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useRef } from "react"
 import PropTypes from "prop-types"
 import { Grid } from "@material-ui/core"
-
+import classNames from "classnames"
+import { Slide } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core"
+import useFirstViewable from "./hooks/useFirstViewable"
 
 const useStyles = makeStyles(theme => ({
   description: {
@@ -13,9 +15,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2),
     [theme.breakpoints.up("lg")]: {
       flexFlow: "row",
-      "&:nth-child(even)": {
-        flexFlow: "row-reverse",
-      },
       "& div:nth-child(2)": {
         marginTop: theme.spacing(),
         width: "60%",
@@ -29,16 +28,38 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  reversed: {
+    [theme.breakpoints.up("lg")]: {
+      flexFlow: "row-reverse !important",
+    },
+  },
 }))
 function ContentList(props) {
+  const items = props.items.map((Item, key) => (
+    <ContentItem key={key} Item={Item} reversed={key % 2 !== 0}></ContentItem>
+  ))
+  return <Grid container>{items}</Grid>
+}
+
+function ContentItem({ Item, reversed }) {
   const classes = useStyles()
+  const ref = useRef()
+  const isViewable = useFirstViewable(ref)
   return (
-    <Grid container>
-      {props.items.map((Item, key) => (
-        <Grid item xs={12} className={classes.description} key={key}>
+    <Grid item xs={12} ref={ref}>
+      <Slide
+        direction={reversed ? "right" : "left"}
+        in={isViewable}
+        timeout={800}
+      >
+        <div
+          className={classNames(classes.description, {
+            [classes.reversed]: reversed,
+          })}
+        >
           {Item}
-        </Grid>
-      ))}
+        </div>
+      </Slide>
     </Grid>
   )
 }

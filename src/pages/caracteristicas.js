@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ContentList from "../components/ContentList"
 import { useStaticQuery } from "gatsby"
-import { Typography, makeStyles, Link, useMediaQuery } from "@material-ui/core"
+import { Typography, makeStyles, Link } from "@material-ui/core"
 import theme from "../theme"
 
 const useStyles = makeStyles(
@@ -200,7 +200,6 @@ const Characteristics = () => {
           Contacta con{" "}
           <Link
             underline="hover"
-            color="initial"
             target="_blank"
             rel="noreferrer noopener"
             href={`https://api.whatsapp.com/send?phone=${
