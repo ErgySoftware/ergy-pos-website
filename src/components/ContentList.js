@@ -21,6 +21,13 @@ const useStyles = makeStyles(theme => ({
         width: "60%",
       },
     },
+    [theme.breakpoints.up("xxl")]: {
+      justifyContent: "space-between",
+      "& div:nth-child(2)": {
+        marginTop: theme.spacing(),
+        width: "80%",
+      },
+    },
   },
 }))
 function ContentList(props) {
