@@ -14,6 +14,6 @@ export default function useIsViewable(ref) {
     return () => {
       observer.disconnect()
     }
-  }, [ref])
+  }, [ref, observer])
   return viewable
 }

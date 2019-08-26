@@ -17,7 +17,7 @@ function useLoaded() {
     return () => {
       clearTimeout(id)
     }
-  }, [])
+  }, [loaded])
   return [loaded, setLoaded]
 }
 

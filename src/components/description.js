@@ -1,10 +1,10 @@
 import React from "react"
 import Img from "gatsby-image"
 import { Typography } from "@material-ui/core"
-import { useStaticQuery } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import ContentList from "./ContentList"
 
-export default function description() {
+export default function Description() {
   const data = useStaticQuery(graphql`
     query {
       speedImage: file(relativePath: { eq: "speed.png" }) {
