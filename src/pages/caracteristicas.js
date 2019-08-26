@@ -35,6 +35,10 @@ const useStyles = makeStyles(
         height: "auto",
       },
     },
+    subtitle: {
+      fontWeight: "bolder",
+      marginBottom: theme.spacing(3),
+    },
   }),
   { defaultTheme: theme }
 )
@@ -294,19 +298,34 @@ const Characteristics = () => {
         </div>
       </section>
       <section className={classes.section}>
-        <Typography variant="h4" component="h2" align="center">
+        <Typography
+          variant="h4"
+          component="h2"
+          align="center"
+          className={classes.subtitle}
+        >
           Facturación
         </Typography>
         <ContentList items={invoicingItems}></ContentList>
       </section>
       <section className={classes.section}>
-        <Typography variant="h4" component="h2" align="center">
+        <Typography
+          variant="h4"
+          component="h2"
+          align="center"
+          className={classes.subtitle}
+        >
           Inventario
         </Typography>
         <ContentList items={inventoryItems}></ContentList>
       </section>
       <section className={classes.section}>
-        <Typography variant="h4" component="h2" align="center">
+        <Typography
+          variant="h4"
+          component="h2"
+          align="center"
+          className={classes.subtitle}
+        >
           Inteligencia de Negocio
         </Typography>
         <ContentList items={businessIntel}></ContentList>

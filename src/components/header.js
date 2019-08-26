@@ -7,12 +7,24 @@ import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import MyLink from "./MyLink"
 import { useMediaQuery, Button } from "@material-ui/core"
-import { useTheme } from "@material-ui/styles"
+import { useTheme, makeStyles } from "@material-ui/styles"
 import classNames from "classnames"
 import useOnTop from "./hooks/useOnTop"
+import useRouteInfo from "./hooks/useRouteInfo"
 
+const useStyles = makeStyles(theme => ({
+  underline: {
+    backgroundColor: theme.palette.secondary.light,
+    [theme.breakpoints.up("md")]: {
+      backgroundColor: "initial",
+      borderBottom: "solid " + theme.palette.secondary.light,
+    },
+  },
+}))
 const Header = ({ siteTitle }) => {
   const theme = useTheme()
+  const classes = useStyles()
+  const routeInfo = useRouteInfo()
   const matches = useMediaQuery(theme.breakpoints.up("md"))
   const [isToogled, setIsToogled] = useState(false)
   const isOnTop = useOnTop()
@@ -99,13 +111,21 @@ const Header = ({ siteTitle }) => {
               Obtener
             </MyLink>
           </li>
-          <li>
+          <li
+            className={classNames({
+              [classes.underline]: routeInfo.path === "/caracteristicas",
+            })}
+          >
             <MyLink to="/caracteristicas" underline="none">
               Características
             </MyLink>
           </li>
-          <li>
-            <MyLink to="/" underline="none">
+          <li
+            className={classNames({
+              [classes.underline]: routeInfo.path === "/planes",
+            })}
+          >
+            <MyLink to="/planes" underline="none">
               Planes
             </MyLink>
           </li>
