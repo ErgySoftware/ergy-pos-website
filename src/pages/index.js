@@ -65,8 +65,8 @@ const IndexPage = () => {
         <div className={classes.actionContainer}>
           <h1>El Punto de Venta Online que estabas buscando</h1>
           <p>
-            La solución para su negocio. Administre las ventas, el inventario,
-            las cajas y los clientes. Sin nada que usted tenga que instalar o
+            La solución ideal para su negocio. Administre ventas, inventario,
+            cajas y clientes. Sin nada que usted tenga que instalar o
             actualizar.
           </p>
           <Button variant="contained" color="primary" size="large">

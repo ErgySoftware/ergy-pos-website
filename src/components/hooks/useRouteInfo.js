@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 
 export default function useRouteInfo() {
-  const [routeInfo, setRouteInfo] = useState(getRoute())
+  const [routeInfo, setRouteInfo] = useState({ path: "/", search: new Map() }) // Gatsby no conoce window en build time
   useEffect(() => {
+    setRouteInfo(getRoute()) // Lo ejecuta la primera vez para que tenga la ruta correcta
     function onRouteChange() {
       setRouteInfo(getRoute())
     }

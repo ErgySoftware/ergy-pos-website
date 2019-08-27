@@ -51,7 +51,7 @@ export default function Description() {
         </Typography>
         <Typography variant="body1" align="center">
           Obtenga una experiencia intuitiva en nuestra plataforma diseñada para
-          ser usada sin complicaciones ni dificultades
+          ser usada sin complicaciones.
         </Typography>
       </div>
     </>,

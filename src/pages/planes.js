@@ -57,9 +57,8 @@ export default function Planes() {
           PRECIOS
         </Typography>
         <Typography variant="subtitle1" align="center" color="textPrimary" s>
-          Los primeros 3 días son absolutamente <strong>gratis</strong> en
-          cualquier plan, no se requiere tarjetas de credito para iniciar la
-          prueba.
+          Los primeros 45 días son <strong>gratis</strong> en cualquier plan, no
+          se requiere tarjetas de credito para iniciar la prueba.
         </Typography>
         <Grid container spacing={3} alignItems="stretch">
           <Grid item xs={12} sm={6} md={4} alignItems="stretch">

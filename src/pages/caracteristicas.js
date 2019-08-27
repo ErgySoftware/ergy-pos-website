@@ -140,7 +140,7 @@ const Characteristics = () => {
       image: images.creditImage.childImageSharp.fixed,
       description: (
         <>
-          Mantenga lineas de credito a sus mejores clientes y controle los pagos
+          Mantenga lineas de credito a sus mejores clientes, controle los pagos
           y abonos para que sus cuentas siempre sean claras.
         </>
       ),
@@ -150,7 +150,7 @@ const Characteristics = () => {
       image: images.dianImage.childImageSharp.fixed,
       description: (
         <>
-          Maneje diferentes tipos de impuesto y mantenga un consecutivo de
+          Maneje diferentes tipos de impuestos y mantenga un consecutivo de
           facturación para que las facturas que emita cumplan la reglamentación
           impuesta por la DIAN.
         </>
@@ -172,8 +172,8 @@ const Characteristics = () => {
           >
             ventas
           </Link>{" "}
-          para preguntar por las opciones de personalización para que su factura
-          represente la estética de su negocio.
+          para preguntar por las opciones de personalización, para que su
+          factura represente la estética de su negocio.
         </>
       ),
     },
@@ -258,8 +258,8 @@ const Characteristics = () => {
       description: (
         <>
           Para que siempre tenga claro el estado de su negocio{" "}
-          <strong>Ergy POS</strong> realiza diferentes informes de utilidad para
-          que pueda tomar las mejores decisiones de forma informada.
+          <strong>Ergy POS</strong> realiza diferentes informes de utilidad con
+          los que pueda tomar las mejores decisiones informadas.
         </>
       ),
     },
