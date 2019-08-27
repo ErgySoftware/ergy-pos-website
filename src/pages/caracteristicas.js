@@ -6,42 +6,31 @@ import SEO from "../components/seo"
 import ContentList from "../components/ContentList"
 import { useStaticQuery, graphql } from "gatsby"
 import { Typography, makeStyles, Link } from "@material-ui/core"
-import theme from "../theme"
+import withRootTheme from "../withRootTheme"
 
-const useStyles = makeStyles(
-  theme => ({
-    section: {
-      padding: "10px   5vw",
-      margin: "0 auto",
-      [theme.breakpoints.up("xl")]: {
-        padding: "10px calc(calc(100vw - 1200px) / 2)", // mantiene el ancho maximo en 1200px y permite backgound
-      },
-      [theme.breakpoints.up("xxl")]: {
-        padding: "10px calc(calc(100vw - 1800px) / 2)",
-      },
-      "& strong, & a": {
-        color: theme.palette.primary.light,
-      },
-      "&:nth-child(even)": {
-        background: theme.palette.background.gradient,
-        color: theme.palette.secondary.contrastText,
-      },
+const useStyles = makeStyles(theme => ({
+  section: {
+    "& strong, & a": {
+      color: theme.palette.primary.light,
     },
-    description: {
-      visibility: "hidden",
-      height: 0,
-      [theme.breakpoints.up("md")]: {
-        visibility: "visible",
-        height: "auto",
-      },
+    "&:nth-child(even)": {
+      background: theme.palette.background.gradient,
+      color: theme.palette.secondary.contrastText,
     },
-    subtitle: {
-      fontWeight: "bolder",
-      marginBottom: theme.spacing(3),
+  },
+  description: {
+    visibility: "hidden",
+    height: 0,
+    [theme.breakpoints.up("md")]: {
+      visibility: "visible",
+      height: "auto",
     },
-  }),
-  { defaultTheme: theme }
-)
+  },
+  subtitle: {
+    fontWeight: "bolder",
+    marginBottom: theme.spacing(3),
+  },
+}))
 
 export const fixedImage = graphql`
   fragment fixedImage on File {
@@ -279,7 +268,7 @@ const Characteristics = () => {
   return (
     <Layout>
       <SEO title="Características" />
-      <section id="caracteristicas" className={classes.section}>
+      <section id="caracteristicas" className={"section " + classes.section}>
         <div className={classes.description}>
           <Typography
             variant="h3"
@@ -297,7 +286,7 @@ const Characteristics = () => {
           </Typography>
         </div>
       </section>
-      <section className={classes.section}>
+      <section className={"section " + classes.section}>
         <Typography
           variant="h4"
           component="h2"
@@ -308,7 +297,7 @@ const Characteristics = () => {
         </Typography>
         <ContentList items={invoicingItems}></ContentList>
       </section>
-      <section className={classes.section}>
+      <section className={"section " + classes.section}>
         <Typography
           variant="h4"
           component="h2"
@@ -319,7 +308,7 @@ const Characteristics = () => {
         </Typography>
         <ContentList items={inventoryItems}></ContentList>
       </section>
-      <section className={classes.section}>
+      <section className={"section " + classes.section}>
         <Typography
           variant="h4"
           component="h2"
@@ -334,4 +323,4 @@ const Characteristics = () => {
   )
 }
 
-export default Characteristics
+export default withRootTheme(Characteristics)

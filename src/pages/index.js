@@ -5,56 +5,53 @@ import SEO from "../components/seo"
 import Displays from "../components/displays"
 import Description from "../components/description"
 import { makeStyles, Button } from "@material-ui/core"
-import theme from "../theme"
+import withRootTheme from "../withRootTheme"
 
-const useStyles = makeStyles(
-  theme => ({
-    main: {
-      padding: "10px   5vw",
-      display: "flex",
-      flexFlow: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      alignContent: "center",
-      background: theme.palette.background.gradient,
-      height: "calc(100vh - 60px)",
-      [theme.breakpoints.up("lg")]: {
-        background: "none",
-        height: "calc(100vh - 115px)",
-      },
+const useStyles = makeStyles(theme => ({
+  main: {
+    padding: "10px   5vw",
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignContent: "center",
+    background: theme.palette.background.gradient,
+    height: "calc(100vh - 60px)",
+    [theme.breakpoints.up("lg")]: {
+      background: "none",
+      height: "calc(100vh - 115px)",
     },
-    description: {
-      maxWidth: 900,
-      margin: "10px auto",
-      [theme.breakpoints.up("xl")]: {
-        maxWidth: 1200,
-      },
-      [theme.breakpoints.up("xxl")]: {
-        maxWidth: 1800,
-      },
+  },
+  description: {
+    maxWidth: 900,
+    margin: "10px auto",
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1200,
     },
-    actionContainer: {
-      display: "flex",
-      flexFlow: "column",
-      textAlign: "center",
-      color: theme.palette.common.white,
-      [theme.breakpoints.up("lg")]: {
-        width: "45%",
-        color: theme.palette.common.black,
-      },
+    [theme.breakpoints.up("xxl")]: {
+      maxWidth: 1800,
     },
-    imageContainer: {
-      display: "none",
-      [theme.breakpoints.up("lg")]: {
-        display: "block",
-        width: "50%",
-        maxHeight: "100%",
-        maxWidth: "100vh",
-      },
+  },
+  actionContainer: {
+    display: "flex",
+    flexFlow: "column",
+    textAlign: "center",
+    color: theme.palette.common.white,
+    [theme.breakpoints.up("lg")]: {
+      width: "45%",
+      color: theme.palette.common.black,
     },
-  }),
-  { defaultTheme: theme }
-)
+  },
+  imageContainer: {
+    display: "none",
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
+      width: "50%",
+      maxHeight: "100%",
+      maxWidth: "100vh",
+    },
+  },
+}))
 
 const IndexPage = () => {
   const classes = useStyles()
@@ -84,4 +81,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default withRootTheme(IndexPage)

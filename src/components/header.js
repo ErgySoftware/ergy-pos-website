@@ -106,8 +106,12 @@ const Header = ({ siteTitle }) => {
               Iniciar Sesión
             </Button>
           </li>
-          <li>
-            <MyLink to="/" underline="none">
+          <li
+            className={classNames({
+              [classes.underline]: routeInfo.path === "/obtener",
+            })}
+          >
+            <MyLink to="/obtener" underline="none">
               Obtener
             </MyLink>
           </li>

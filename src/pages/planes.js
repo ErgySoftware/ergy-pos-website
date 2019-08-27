@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import theme from "../theme"
 import {
   makeStyles,
   Typography,
@@ -16,6 +15,7 @@ import {
 } from "@material-ui/core"
 import { withStyles } from "@material-ui/styles"
 import classNames from "classnames"
+import withRootTheme from "../withRootTheme"
 
 const StyledItemText = withStyles({
   root: {
@@ -23,41 +23,28 @@ const StyledItemText = withStyles({
   },
 })(ListItemText)
 
-const useStyles = makeStyles(
-  theme => ({
-    section: {
-      padding: "10px   5vw",
-      margin: "0 auto",
-      [theme.breakpoints.up("xl")]: {
-        padding: "10px calc(calc(100vw - 1200px) / 2)", // mantiene el ancho maximo en 1200px y permite backgound
-      },
-      [theme.breakpoints.up("xxl")]: {
-        padding: "10px calc(calc(100vw - 1800px) / 2)",
-      },
-    },
-    priceSection: {
-      background: theme.palette.background.gradient,
-      paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(3),
-    },
-    content: {
-      display: "flex",
-      padding: theme.spacing(2),
-      height: "100%",
-      flexFlow: "column",
-      justifyContent: "space-between",
-    },
-  }),
-  { defaultTheme: theme }
-)
-export default function Planes() {
+const useStyles = makeStyles(theme => ({
+  priceSection: {
+    background: theme.palette.background.gradient,
+    paddingTop: theme.spacing(3) + "px !important",
+    paddingBottom: theme.spacing(3) + "px !important",
+  },
+  content: {
+    display: "flex",
+    padding: theme.spacing(2),
+    height: "100%",
+    flexFlow: "column",
+    justifyContent: "space-between",
+  },
+}))
+const Planes = () => {
   const classes = useStyles()
   const [billYearly, setBillYearly] = useState(false)
   return (
     <Layout>
       <SEO title="Planes" />
       <section id="planes">
-        <div className={classes.section}>
+        <div className="section">
           <Typography
             variant="h2"
             component="h1"
@@ -99,13 +86,13 @@ export default function Planes() {
             </Typography>
           </FormGroup>
         </div>
-        <div className={classNames(classes.section, classes.priceSection)}>
+        <div className={classNames("section", classes.priceSection)}>
           <Grid container spacing={3} alignItems="stretch" justify="center">
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.content} elevation={3}>
                 <div>
                   <Typography variant="h3" align="center" color="secondary">
-                    Básica
+                    Básico
                   </Typography>
                   <Typography variant="h5" align="center" color="textPrimary">
                     {billYearly ? "400 000" : "40 000"}
@@ -136,7 +123,7 @@ export default function Planes() {
                 </Button>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.content} elevation={24}>
                 <div>
                   <Typography variant="h3" align="center" color="secondary">
@@ -159,7 +146,7 @@ export default function Planes() {
                       <StyledItemText primary="Cajas Ilimitadas" />
                     </ListItem>
                     <ListItem>
-                      <StyledItemText primary="Usuarios Ilimitados" />
+                      <StyledItemText primary="8 usuarios" />
                     </ListItem>
                     <ListItem>
                       <StyledItemText primary="Soporte telefónico y por correo" />
@@ -171,44 +158,11 @@ export default function Planes() {
                 </Button>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper className={classes.content} elevation={3}>
-                <div>
-                  <Typography variant="h3" align="center" color="textPrimary">
-                    On Premise
-                  </Typography>
-                  <Typography variant="h5" align="center" color="textSecondary">
-                    ¡PRONTO!
-                  </Typography>
-                  <List dense={true}>
-                    <ListItem>
-                      <StyledItemText primary="Ventas Ilimitadas" />
-                    </ListItem>
-                    <ListItem>
-                      <StyledItemText primary="Productos Ilimitados" />
-                    </ListItem>
-                    <ListItem>
-                      <StyledItemText primary="Cajas Ilimitadas" />
-                    </ListItem>
-                    <ListItem>
-                      <StyledItemText primary="Usuarios Ilimitados" />
-                    </ListItem>
-                    <ListItem>
-                      <StyledItemText primary="Soporte por un año" />
-                    </ListItem>
-                    <ListItem>
-                      <StyledItemText primary="API de integración" />
-                    </ListItem>
-                  </List>
-                </div>
-                <Button color="primary" disabled>
-                  MUY PRONTO
-                </Button>
-              </Paper>
-            </Grid>
           </Grid>
         </div>
       </section>
     </Layout>
   )
 }
+
+export default withRootTheme(Planes)

@@ -14,7 +14,6 @@ import "./layout.css"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { faBars, faTimes, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faWhatsappSquare } from "@fortawesome/free-brands-svg-icons"
-import { ThemeProvider } from "@material-ui/styles"
 import { useMediaQuery } from "@material-ui/core"
 import theme from "../theme"
 import Footer from "./footer"
@@ -37,22 +36,20 @@ const Layout = ({ children }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"))
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main
-          style={{
-            margin: `0 auto`,
-            paddingTop: matches ? 115 : 60,
-          }}
-        >
-          {children}
-        </main>
-        <Footer
-          phone={data.site.siteMetadata.contactPhone}
-          mail={data.site.siteMetadata.contactMail}
-          message={data.site.siteMetadata.contactMessage}
-        ></Footer>
-      </ThemeProvider>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <main
+        style={{
+          margin: `0 auto`,
+          paddingTop: matches ? 115 : 60,
+        }}
+      >
+        {children}
+      </main>
+      <Footer
+        phone={data.site.siteMetadata.contactPhone}
+        mail={data.site.siteMetadata.contactMail}
+        message={data.site.siteMetadata.contactMessage}
+      ></Footer>
     </>
   )
 }

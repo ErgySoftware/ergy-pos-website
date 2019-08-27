@@ -2,6 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import withRootTheme from "../withRootTheme"
 
 const NotFoundPage = () => (
   <Layout>
@@ -11,4 +12,4 @@ const NotFoundPage = () => (
   </Layout>
 )
 
-export default NotFoundPage
+export default withRootTheme(NotFoundPage)

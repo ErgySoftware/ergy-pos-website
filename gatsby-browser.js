@@ -4,9 +4,19 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// You can delete this file if you're not using it
+import React from "react"
+import useGlobalStyle from "./src/components/hooks/useGlobalStyle"
 
-exports.onClientEntry = async () => {
+export const wrapRootElement = ({ element }) => {
+  return <Wrapper>{element}</Wrapper>
+}
+
+function Wrapper({ children }) {
+  useGlobalStyle()
+  return <>{children}</>
+}
+
+export const onClientEntry = async () => {
   if (typeof IntersectionObserver === `undefined`) {
     await import(`intersection-observer`)
     console.log(`👍 IntersectionObserver is polyfilled`)
