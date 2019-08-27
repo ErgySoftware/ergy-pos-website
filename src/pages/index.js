@@ -16,7 +16,7 @@ const useStyles = makeStyles(
       justifyContent: "space-between",
       alignItems: "center",
       alignContent: "center",
-      background: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)  ",
+      background: theme.palette.background.gradient,
       height: "calc(100vh - 60px)",
       [theme.breakpoints.up("lg")]: {
         background: "none",

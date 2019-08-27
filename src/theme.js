@@ -27,6 +27,7 @@ let theme = createMuiTheme({
     },
     background: {
       default: "#fff",
+      gradient: "linear-gradient(150deg, #11998e 20%, #38ef7d 80%)",
     },
     text: {
       primary: "rgba(51, 51, 51, 0.87)",

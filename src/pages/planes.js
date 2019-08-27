@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import theme from "../theme"
@@ -11,8 +11,11 @@ import {
   ListItemText,
   Button,
   Paper,
+  Switch,
+  FormGroup,
 } from "@material-ui/core"
 import { withStyles } from "@material-ui/styles"
+import classNames from "classnames"
 
 const StyledItemText = withStyles({
   root: {
@@ -32,6 +35,11 @@ const useStyles = makeStyles(
         padding: "10px calc(calc(100vw - 1800px) / 2)",
       },
     },
+    priceSection: {
+      background: theme.palette.background.gradient,
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+    },
     content: {
       display: "flex",
       padding: theme.spacing(2),
@@ -44,129 +52,162 @@ const useStyles = makeStyles(
 )
 export default function Planes() {
   const classes = useStyles()
+  const [billYearly, setBillYearly] = useState(false)
   return (
     <Layout>
       <SEO title="Planes" />
-      <section id="planes" className={classes.section}>
-        <Typography
-          variant="h2"
-          component="h1"
-          align="center"
-          color="textPrimary"
-        >
-          PRECIOS
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textPrimary" s>
-          Los primeros 45 días son <strong>gratis</strong> en cualquier plan, no
-          se requiere tarjetas de credito para iniciar la prueba.
-        </Typography>
-        <Grid container spacing={3} alignItems="stretch">
-          <Grid item xs={12} sm={6} md={4} alignItems="stretch">
-            <Paper className={classes.content} elevation={3}>
-              <div>
-                <Typography variant="h3" align="center" color="primary">
-                  Inicial
-                </Typography>
-                <Typography variant="h5" align="center" color="textPrimary">
-                  40 000{" "}
-                  <Typography variant="caption" color="textSecondary">
-                    COP/mes
+      <section id="planes">
+        <div className={classes.section}>
+          <Typography
+            variant="h2"
+            component="h1"
+            align="center"
+            color="primary"
+          >
+            PRECIOS
+          </Typography>
+          <Typography variant="subtitle1" align="center" color="textPrimary">
+            Los primeros 45 días son <strong>gratis</strong> en cualquier plan,
+            no se requiere tarjetas de credito para iniciar la prueba.
+          </Typography>
+          <FormGroup style={{ alignItems: "center" }}>
+            <Typography component="div">
+              <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid item>
+                  <Typography variant="body1" color="secondary">
+                    Mensual
                   </Typography>
-                </Typography>
-                <List dense={true}>
-                  <ListItem>
-                    <StyledItemText primary="Ventas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Productos Ilimitados" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Cajas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="3 usuarios" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Soporte por Correo" />
-                  </ListItem>
-                </List>
-              </div>
-              <Button variant="outlined" color="primary">
-                Obtener
-              </Button>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4} alignItems="stretch">
-            <Paper className={classes.content} elevation={12}>
-              <div>
-                <Typography variant="h3" align="center" color="primary">
-                  Crecimiento
-                </Typography>
-                <Typography variant="h5" align="center" color="textPrimary">
-                  70 000{" "}
-                  <Typography variant="caption" color="textSecondary">
-                    COP/mes
+                </Grid>
+                <Grid item>
+                  <Switch
+                    checked={billYearly}
+                    onChange={() => setBillYearly(!billYearly)}
+                    value="yearly"
+                    inputProps={{
+                      "aria-label": billYearly
+                        ? "Facturar Anualmente"
+                        : "Facturar Mensualmente",
+                    }}
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1" color="secondary">
+                    Anual <strong>¡2 meses gratis!</strong>
                   </Typography>
-                </Typography>
-                <List dense={true}>
-                  <ListItem>
-                    <StyledItemText primary="Ventas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Productos Ilimitados" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Cajas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Usuarios Ilimitados" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Soporte telefónico y por correo" />
-                  </ListItem>
-                </List>
-              </div>
-              <Button variant="contained" color="primary">
-                Obtener
-              </Button>
-            </Paper>
+                </Grid>
+              </Grid>
+            </Typography>
+          </FormGroup>
+        </div>
+        <div className={classNames(classes.section, classes.priceSection)}>
+          <Grid container spacing={3} alignItems="stretch" justify="center">
+            <Grid item xs={12} md={6} lg={4}>
+              <Paper className={classes.content} elevation={3}>
+                <div>
+                  <Typography variant="h3" align="center" color="secondary">
+                    Básica
+                  </Typography>
+                  <Typography variant="h5" align="center" color="textPrimary">
+                    {billYearly ? "400 000" : "40 000"}
+                    <Typography variant="caption" color="textSecondary">
+                      COP/mes
+                    </Typography>
+                  </Typography>
+                  <List dense={true}>
+                    <ListItem>
+                      <StyledItemText primary="Ventas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Productos Ilimitados" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Cajas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="3 usuarios" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Soporte por Correo" />
+                    </ListItem>
+                  </List>
+                </div>
+                <Button variant="outlined" color="primary">
+                  Obtener
+                </Button>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Paper className={classes.content} elevation={24}>
+                <div>
+                  <Typography variant="h3" align="center" color="secondary">
+                    Premium
+                  </Typography>
+                  <Typography variant="h5" align="center" color="textPrimary">
+                    {billYearly ? "700 000" : "70 000"}
+                    <Typography variant="caption" color="textSecondary">
+                      COP/mes
+                    </Typography>
+                  </Typography>
+                  <List dense={true}>
+                    <ListItem>
+                      <StyledItemText primary="Ventas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Productos Ilimitados" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Cajas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Usuarios Ilimitados" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Soporte telefónico y por correo" />
+                    </ListItem>
+                  </List>
+                </div>
+                <Button variant="contained" color="primary">
+                  Obtener
+                </Button>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Paper className={classes.content} elevation={3}>
+                <div>
+                  <Typography variant="h3" align="center" color="textPrimary">
+                    On Premise
+                  </Typography>
+                  <Typography variant="h5" align="center" color="textSecondary">
+                    ¡PRONTO!
+                  </Typography>
+                  <List dense={true}>
+                    <ListItem>
+                      <StyledItemText primary="Ventas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Productos Ilimitados" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Cajas Ilimitadas" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Usuarios Ilimitados" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="Soporte por un año" />
+                    </ListItem>
+                    <ListItem>
+                      <StyledItemText primary="API de integración" />
+                    </ListItem>
+                  </List>
+                </div>
+                <Button color="primary" disabled>
+                  MUY PRONTO
+                </Button>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={4} alignItems="stretch">
-            <Paper className={classes.content} elevation={3}>
-              <div>
-                <Typography variant="h3" align="center" color="primary">
-                  On Premise
-                </Typography>
-                <Typography variant="h5" align="center" color="textSecondary">
-                  ¡PRONTO!
-                </Typography>
-                <List dense={true}>
-                  <ListItem>
-                    <StyledItemText primary="Ventas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Productos Ilimitados" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Cajas Ilimitadas" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Usuarios Ilimitados" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="Soporte por un año" />
-                  </ListItem>
-                  <ListItem>
-                    <StyledItemText primary="API de integración" />
-                  </ListItem>
-                </List>
-              </div>
-              <Button color="primary" disabled>
-                MUY PRONTO
-              </Button>
-            </Paper>
-          </Grid>
-        </Grid>
+        </div>
       </section>
     </Layout>
   )

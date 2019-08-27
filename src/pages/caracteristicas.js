@@ -23,7 +23,7 @@ const useStyles = makeStyles(
         color: theme.palette.primary.light,
       },
       "&:nth-child(even)": {
-        backgroundColor: theme.palette.secondary.dark,
+        background: theme.palette.background.gradient,
         color: theme.palette.secondary.contrastText,
       },
     },
