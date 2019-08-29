@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Button,
   Paper,
   Switch,
   FormGroup,
@@ -16,6 +15,7 @@ import {
 import { withStyles } from "@material-ui/styles"
 import classNames from "classnames"
 import withRootTheme from "../withRootTheme"
+import MyLink from "../components/MyLinkButton"
 
 const StyledItemText = withStyles({
   root: {
@@ -118,9 +118,17 @@ const Planes = () => {
                     </ListItem>
                   </List>
                 </div>
-                <Button variant="outlined" color="primary">
+                <MyLink
+                  variant="outlined"
+                  color="primary"
+                  to="/obtener"
+                  state={{
+                    plan: "Básico",
+                    billing: billYearly ? "Anual" : "Mensual",
+                  }}
+                >
                   Obtener
-                </Button>
+                </MyLink>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -153,9 +161,17 @@ const Planes = () => {
                     </ListItem>
                   </List>
                 </div>
-                <Button variant="contained" color="primary">
+                <MyLink
+                  variant="contained"
+                  color="primary"
+                  to="/obtener"
+                  state={{
+                    plan: "Premium",
+                    billing: billYearly ? "Anual" : "Mensual",
+                  }}
+                >
                   Obtener
-                </Button>
+                </MyLink>
               </Paper>
             </Grid>
           </Grid>

@@ -1,22 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import withRootTheme from "../withRootTheme"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import {
-  Typography,
-  FormGroup,
-  FormControl,
-  InputLabel,
-  Input,
-  FormHelperText,
-  Grid,
-  Paper,
-  Select,
-  MenuItem,
-  Button,
-} from "@material-ui/core"
+import { Typography, Grid, Paper } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles"
-import MyLink from "../components/MyLink"
+import RegisterForm from "../components/RegisterForm"
 
 const useStyle = makeStyles(theme => ({
   section: {
@@ -30,26 +18,83 @@ const useStyle = makeStyles(theme => ({
       alignItems: "center",
     },
   },
-  row: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(4),
-    "& div:nth-child(odd)": {
-      paddingRight: theme.spacing(),
-    },
-    "& div:nth-child(even)": {
-      paddingLeft: theme.spacing(),
-    },
-  },
 }))
 
-const Obtener = () => {
+const initialState = {
+  email: "",
+  owner: "",
+  bussinessName: "",
+  telephone: "",
+  nit: "",
+  plan: "Básico",
+  billing: "Mensual",
+}
+const Obtener = ({ location }) => {
   const classes = useStyle()
+  const { plan, billing } = location.state || {}
+  const [formState, setFormState] = useState({
+    ...initialState,
+    plan: plan || "Básico",
+    billing: billing || "Mensual",
+  })
+  const [errors, setErrors] = useState({})
+  const [message, setMessage] = useState(null)
+  const onChange = name => event => {
+    const value = event.target.value
+    if (value.length > 255) {
+      errors[name] = "El valor de este campo es demasiado grande."
+    } else {
+      delete errors[name]
+    }
+    if (name === "email" && !value.match(/^.+@.+$/)) {
+      errors[name] = "No parece un email válido"
+    }
+    setFormState({ ...formState, [name]: value })
+    setErrors(errors)
+  }
+  function onDiscart() {
+    setMessage(null)
+  }
+  async function onSubmit(event) {
+    event.preventDefault()
+    try {
+      const result = await fetch(`${process.env.GATSBY_API_URL}/register`, {
+        method: "post",
+        body: JSON.stringify({ client: formState }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if (result.status === 500) {
+        throw new Error(
+          "Sucedio un error inesperado mientras intentabamos registrar su cuenta"
+        )
+      }
+      if (result.status === 400 || result.status === 422) {
+        throw await result.json()
+      }
+      const response = await result.json()
+      setMessage({ display: response.message, type: "success" })
+    } catch (err) {
+      if (err.message) {
+        setMessage({ display: err.message, type: "error" })
+      }
+      if (Array.isArray(err.errors)) {
+        const errors = err.errors // Convierte el arreglo de errores en un objeto
+          .map(({ property, constraints }) => ({
+            [property]: Object.values(constraints).join(", "),
+          }))
+          .reduce((a, b) => ({ ...a, ...b }), {})
+        setErrors(errors)
+      }
+    }
+  }
   return (
     <Layout>
       <SEO title="Obtener" />
       <section id="obtener" className={"section " + classes.section}>
         <Grid container justify="center">
-          <Grid item className={classes.description} xs={6}>
+          <Grid item className={classes.description} md={6}>
             <Typography component="div">
               <Typography component="h1" variant="h3">
                 Obtenga Gratis los primeros 45 días
@@ -61,85 +106,16 @@ const Obtener = () => {
               </Typography>
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Paper elevation={12} style={{ padding: 10 }}>
-              <form id="register">
-                <FormGroup>
-                  <FormControl required>
-                    <InputLabel htmlFor="email">Email</InputLabel>
-                    <Input id="email" placeholder="pepito@ejemplo.com" />
-                  </FormControl>
-                  <FormControl required>
-                    <InputLabel htmlFor="owner">Nombre y Apellidos</InputLabel>
-                    <Input id="owner" placeholder="Pedro Pérez" />
-                  </FormControl>
-                  <FormControl required>
-                    <InputLabel htmlFor="bussinessName">
-                      Nombre de su Negocio
-                    </InputLabel>
-                    <Input
-                      id="bussinessName"
-                      placeholder="Ferretería El Campeón"
-                    />
-                  </FormControl>
-                  <FormControl required>
-                    <InputLabel htmlFor="telephone">
-                      Número de Teléfono
-                    </InputLabel>
-                    <Input id="telephone" />
-                  </FormControl>
-                  <FormControl required>
-                    <InputLabel htmlFor="nit">Identificación</InputLabel>
-                    <Input
-                      id="nit"
-                      aria-describedby="nit-helper"
-                      placeholder="888555111-0"
-                    />
-                    <FormHelperText id="id-helper">
-                      El NIT de su negocio
-                    </FormHelperText>
-                  </FormControl>
-                </FormGroup>
-                <FormGroup row classes={{ row: classes.row }}>
-                  <FormControl required style={{ width: "50%" }}>
-                    <InputLabel htmlFor="plan">Plan</InputLabel>
-                    <Select
-                      value={"Básico"}
-                      onChange={() => {}}
-                      inputProps={{
-                        name: "plan",
-                        id: "plan",
-                      }}
-                    >
-                      <MenuItem value={"Básico"}>Básico</MenuItem>
-                      <MenuItem value={"Premium"}>Premium</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormControl required style={{ width: "50%" }}>
-                    <InputLabel htmlFor="billing">Facturación</InputLabel>
-                    <Select
-                      value={"Mensual"}
-                      onChange={() => {}}
-                      inputProps={{
-                        name: "billing",
-                        id: "billing",
-                      }}
-                    >
-                      <MenuItem value={"Mensual"}>Mensual</MenuItem>
-                      <MenuItem value={"Anual"}>Anual</MenuItem>
-                    </Select>
-                  </FormControl>
-                </FormGroup>
-                <div style={{ textAlign: "center" }}>
-                  <Button variant="contained" color="primary" size="large">
-                    Empezar
-                  </Button>
-                  <Typography variant="subtitle2">
-                    Al hacer click acepta nuestros{" "}
-                    <MyLink>términos y condiciones</MyLink>.
-                  </Typography>
-                </div>
-              </form>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={12} style={{ padding: "2rem" }}>
+              <RegisterForm
+                onChange={onChange}
+                value={formState}
+                errors={errors}
+                onSubmit={onSubmit}
+                onDiscart={onDiscart}
+                message={message}
+              />
             </Paper>
           </Grid>
         </Grid>
