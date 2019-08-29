@@ -75,11 +75,6 @@ export default function Footer({ phone, mail, message }) {
                 Planes
               </MyLink>
             </li>
-            <li>
-              <MyLink to="/" underline="hover" color="inherit">
-                Documentación
-              </MyLink>
-            </li>
           </ul>
         </Grid>
         <Grid item xs={12} sm={12} lg={4} className={classes.block}>

@@ -133,11 +133,6 @@ const Header = ({ siteTitle }) => {
               Planes
             </MyLink>
           </li>
-          <li>
-            <MyLink to="/" underline="none" variant="inherit">
-              Documentación
-            </MyLink>
-          </li>
         </ul>
       </nav>
     </header>
